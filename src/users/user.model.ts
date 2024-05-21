@@ -1,4 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
+import {
+  IsBoolean,
+  IsEmail,
+  IsNotEmpty,
+  IsString,
+  Length,
+  MinLength,
+} from 'class-validator';
 import { BelongsToMany, Model } from 'sequelize-typescript';
 import { Column, DataType, Table } from 'sequelize-typescript';
 import { Role } from 'src/roles/roles.model';
@@ -24,18 +32,23 @@ export class User extends Model<User, UserCreationAttr> {
     example: 'vovchik@mail.ru',
     description: 'Email пользователя',
   })
+  @IsEmail()
   @Column({ type: DataType.STRING, unique: true, allowNull: false })
   email: string;
 
   @ApiProperty({ example: '12345', description: 'Пароль пользователя' })
+  @IsNotEmpty()
+  @MinLength(5)
   @Column({ type: DataType.STRING, allowNull: false })
   password: string;
 
   @ApiProperty({ example: 'false', description: 'Забанен или нет' })
+  @IsBoolean()
   @Column({ type: DataType.BOOLEAN, defaultValue: false })
   banned: boolean;
 
   @ApiProperty({ example: 'Спам', description: 'Причина бана' })
+  @IsString()
   @Column({ type: DataType.STRING, allowNull: true })
   banResponse: string;
 
