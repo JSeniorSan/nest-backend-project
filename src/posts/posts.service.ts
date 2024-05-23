@@ -10,7 +10,8 @@ export class PostsService {
   ) {}
 
   create(dto: CreatePostDto) {
-    return this.postRepository.create(dto);
+    const post = this.postRepository.create(dto);
+    return post;
   }
 
   getAll() {

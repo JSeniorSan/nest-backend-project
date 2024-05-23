@@ -10,5 +10,6 @@ import { PostModel } from './posts.model';
   controllers: [PostsController],
   providers: [PostsService],
   imports: [SequelizeModule.forFeature([User, PostModel]), JwtModule],
+  exports: [PostsService],
 })
 export class PostsModule {}

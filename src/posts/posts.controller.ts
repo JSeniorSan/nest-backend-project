@@ -16,7 +16,7 @@ export class PostsController {
     return this.postsService.create(dto);
   }
 
-  @ApiResponse({ status: 200, type: Array<PostModel> })
+  @ApiResponse({ status: 200, type: [PostModel] })
   @ApiOperation({ summary: 'Получение всех постов' })
   @Get()
   getAllPosts() {
