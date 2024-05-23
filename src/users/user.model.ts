@@ -7,8 +7,9 @@ import {
   Length,
   MinLength,
 } from 'class-validator';
-import { BelongsToMany, Model } from 'sequelize-typescript';
+import { BelongsToMany, HasMany, Model } from 'sequelize-typescript';
 import { Column, DataType, Table } from 'sequelize-typescript';
+import { PostModel } from 'src/posts/posts.model';
 import { Role } from 'src/roles/roles.model';
 import { UserRole } from 'src/roles/users-roles.model';
 
@@ -54,4 +55,7 @@ export class User extends Model<User, UserCreationAttr> {
 
   @BelongsToMany(() => Role, () => UserRole)
   roles: Role[];
+
+  @HasMany(() => PostModel)
+  posts: PostModel[];
 }
