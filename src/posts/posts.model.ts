@@ -11,7 +11,7 @@ import { User } from 'src/users/user.model';
 
 interface PostInterface {
   title: string;
-  imageUrl: string;
+  image: any;
   text: string;
   userId: number;
 }
@@ -40,7 +40,7 @@ export class PostModel extends Model<PostModel, PostInterface> {
 
   @ApiProperty({ example: 'http://imageUrl.com' })
   @Column({ type: DataType.STRING, allowNull: true })
-  imageUrl: string;
+  image: string;
 
   @ForeignKey(() => User)
   @Column({ type: DataType.INTEGER })

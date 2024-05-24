@@ -9,11 +9,18 @@ import { UserRole } from './roles/users-roles.model';
 import { AuthModule } from './auth/auth.module';
 import { PostsModule } from './posts/posts.module';
 import { PostModel } from './posts/posts.model';
+import { UploadsModule } from './uploads/uploads.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import * as path from 'path';
 
 @Module({
   controllers: [],
   providers: [],
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: path.resolve(__dirname, 'static'),
+    }),
+
     ConfigModule.forRoot({
       envFilePath: `.${process.env.NODE_ENV}.env`,
     }),
@@ -31,6 +38,7 @@ import { PostModel } from './posts/posts.model';
     RolesModule,
     AuthModule,
     PostsModule,
+    UploadsModule,
   ],
 })
 export class AppModule {}

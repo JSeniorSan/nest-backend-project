@@ -7,9 +7,6 @@ export class CreatePostDto {
   @ApiProperty({ example: 'text' })
   readonly text: string;
 
-  @ApiProperty({ example: 'imageUrl.jpeg' })
-  readonly imageUrl: string;
-
   @ApiProperty({ example: 1 })
   readonly userId: number;
 }
