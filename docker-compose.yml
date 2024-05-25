@@ -1,0 +1,33 @@
+version: '3'
+services:
+  backend:
+    container_name: api
+    build:
+      context: .
+    env_file:
+      - .development.env
+    volumes:
+      - app_data:/app
+    ports:
+      - 5000:5000
+    command: npm run start:dev
+    depends_on:
+      - db
+    restart: always
+
+  db:
+    container_name: postgres
+    image: postgres:16
+    env_file:
+      - .development.env
+    ports:
+      - 5432:5432
+    environment:
+      PG_DATA: /var/lib/postgresql/data
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: always
+
+volumes:
+  pgdata:
+  app_data:
